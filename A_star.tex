@@ -3,6 +3,7 @@
 \usepackage{algorithm}
 \usepackage{pdflscape}
 \usepackage[noend]{algpseudocode}
+\usepackage{bm}
 
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
@@ -16,8 +17,8 @@
 \begin{algorithmic}
 \Function{A*}{start, goal}
 	\State $\textit{closedset} \gets \textit{the empty set}$
-	\State $\textit{openset} \gets  start $	
-	\State $\textit{came\_from} \gets \text{the empty map}\textit{string}$
+	\State $\textit{openset} \gets  {start} $	
+	\State $\textit{came\_from} \gets \text{the empty map}$
 	\BState
 	
 	\State $\textit{q\_score}[start] \gets 0 $
@@ -25,29 +26,31 @@
 	\BState
 	
 	\While{$openset \neq \emptyset$} 
-		\State $\textit{current } \gets \text{the node in} \textit{ openset } \text{having the lowest } \textit{f\_score}[] \text{value}$
+		\State $\textit{current } \gets \text{the node in} \textit{ openset } \text{having the lowest } \textit{f\_score}[\text{ }] \text{value}$
 		\BState
 
 		\If{current = goal} 
-		\Return $\textit{reconstruct\_path}(came\_from, goal)$
+		\Return $\text{reconstruct\_path}(came\_from, goal)$
 		\EndIf
-
+		\BState
 		\State $\text{remove} \textit{ current } \text{from} \textit{ openset}$
 		\State $\text{add} \textit{ current } \text{to} \textit{ closedset}$
 		\BState
 
 		\ForAll{$neighbour \in neighbour\_nodes(current)$}
 			\If{ $ neighbour \in closedset$}
-				\State $\emph{continue}$
+				\State $\bm{continue}$
 			\EndIf
-			\State $\textit{neighbour\_g\_score} \gets \textit{g\_score}[current] + \textit{dist\_between}(current, neighbour)$
+			\BState
+			\State $\textit{neighbour\_g\_score} \gets \textit{g\_score}[current] + \text{dist\_between}(current, neighbour)$
 
 			\If{ $\textit{neighbour } \text{not in }  \textit{openset } \parallel \textit{neighbour\_g\_score} < \textit{g\_score}[neighbour]$}
 				\State $\textit{came\_from}[neighbour] \gets \textit{current}$
 				\State $\textit{g\_score}[neighbour] \gets \textit{neighbour\_g\_score}$
-				\State $\textit{f\_score}[neighbour] \gets \textit{g\_score}[neighbour] + \textit{heuristic\_cost\_estimate}(neighbour, goal)$
+				\State $\textit{f\_score}[neighbour] \gets \textit{g\_score}[neighbour] + \text{ heuristic\_cost\_estimate}(neighbour, goal)$
+				\BState
 				\If{$ neighbour \notin openset $ }
-					\State $add \textit{neighbour} to \textit{openset}$
+					\State $\text{add} \textit{ neighbour } \text{to} \textit{ openset}$
 				\EndIf
 			\EndIf
 		\EndFor
