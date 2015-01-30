@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{pdflscape}
+\usepackage{pbox}
+\usepackage{framed}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{landscape}
+
+\centerline{\textbf{The Fibonacci numbers} are important in many aspects of mathematics, computing and are often found in nature}
+$$ 
+F(n) = \Bigg\{\begin{matrix}
+		  0, \textit{ if } n = 0;  \\
+		  1, \textit{ if } n = 1;  \\
+		  F(n-1) + F(n-2)  \textit{ if } n > 1
+		\end{matrix}
+ $$
+\centerline{\textbf{The Fibonacci numbers} are also intimately connected with the golden ratio}
+
+\end{landscape}
+\end{document}
