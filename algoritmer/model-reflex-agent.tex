@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{pdflscape}
+\usepackage[noend]{algpseudocode}
+\usepackage{bm}
+\usepackage{caption}
+
+\newcommand{\INDSTATE}[1][1]{\State\hspace{\algorithmicindent}}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{landscape}
+\begin{algorithm}
+\caption{Model Based Reflex Agent}\label{euclid}
+\begin{algorithmic}[1]
+\Function{MODEL-BASED-REFLEX-AGENT}{percept}
+	\State $\textbf{persistent: } $
+	\INDSTATE  $\textit{state} \text{, the agent's current conception of the world state}$
+	\INDSTATE  $\textit{model} \text{, a description of how the next state depends on current state and action}$	
+	\INDSTATE  $\textit{rules} \text{, a set of condition-action rules}$
+	\INDSTATE  $\textit{action} \text{, the most recent action, initially none}$
+	\BState
+
+	\State $\textit{state} \gets \text{UPDATE-STATE}(state, action, percept, model) $
+	\State $\textit{rule} \gets \text{RULE-MATCH}(state, rules) $
+	\State $\textit{action} \gets \textit{rule.}\text{ACTION}$
+	\State \Return $action$
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+\end{landscape}
+\end{document}
