@@ -14,7 +14,7 @@
 \begin{landscape}
 \begin{algorithm}
 \caption{A* Search Algorithm (Graph)}\label{euclid}
-\begin{algorithmic}
+\begin{algorithmic}[1]
 \Function{A*}{start, goal}
 	\State $\textit{closedset} \gets \textit{the empty set}$
 	\State $\textit{openset} \gets  {start} $	
@@ -55,7 +55,7 @@
 			\EndIf
 		\EndFor
 	\EndWhile
-	\Return $failure$
+	\State \Return $failure$
 \EndFunction
 \end{algorithmic}
 \end{algorithm}

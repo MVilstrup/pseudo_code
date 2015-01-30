@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{pdflscape}
+\usepackage[noend]{algpseudocode}
+\usepackage{bm}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{landscape}
+\begin{algorithm}
+\caption{Simple Reflex Agent}\label{euclid}
+\begin{algorithmic}[1]
+\Function{SIMPLE-REFLEX-AGENT}{percept}
+	\State $\textbf{persistent: }\textit{rules} \text{, a set of condition-action rules}$
+	\BState
+	
+	\State $\textit{state} \gets  \text{INTERPRET-INPUT}(percept) $	
+	\State $\textit{rule} \gets \text{RULE-MATCH}(state, rules)$
+	\State $\textit{action} \gets \textit{rule.}\text{ACTION}$
+	\BState
+
+	\State \Return $action$
+
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+\end{landscape}
+\end{document}
