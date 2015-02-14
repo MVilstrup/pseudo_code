@@ -1,8 +1,17 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage{amsmath}
 \usepackage{pdflscape}
 \usepackage{pbox}
 \usepackage{framed}
+\usepackage{listings}
+\lstset{language=Python} 
+\usepackage{fancybox}
+
+\makeatletter
+\newenvironment{CenteredBox}{% 
+\begin{Sbox}}{% Save the content in a box
+\end{Sbox}\centerline{\parbox{\wd\@Sbox}{\TheSbox}}}% And output it centered
+\makeatother
 
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
@@ -20,7 +29,27 @@ F(n) = \Bigg\{\begin{matrix}
 		  F(n-1) + F(n-2)  \textit{ if } n > 1
 		\end{matrix}
  $$
-\centerline{\textbf{The Fibonacci numbers} are also intimately connected with the golden ratio}
+\centerline{\textbf{The Fibonacci numbers} are also intimately connected with the golden ratio, and are typically computed using recursion}
+% Source: http://scottsievert.github.io/blog/2015/01/31/the-mysterious-eigenvalue/
+\\\\
+\centerline{A better way to compute \textbf{The Fibonacci numbers} is done using \textbf{eigenvalues and eigenvectors}}
+
+\begin{figure}[thp]
+	\begin{CenteredBox}
+	  	\begin{lstlisting}
+		def fib(n):
+		    lambda1 = (1 + sqrt(5))/2
+		    lambda2 = (1 - sqrt(5))/2
+		    return (lambda1**n - lambda2**n) / sqrt(5)
+		def fib_approx(n)
+		    # for practical range, percent error < 10^-6
+		    return 1.618034**n / sqrt(5)
+		\end{lstlisting}
+	\end{CenteredBox}
+\caption{Bla}
+\end{figure}
+
+
 
 \end{landscape}
 \end{document}
