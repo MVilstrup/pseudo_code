@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{pdflscape}
+\usepackage[noend]{algpseudocode}
+\usepackage{bm}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{landscape}
+\begin{algorithm}
+\caption{Breadth First Search (Graph)}\label{euclid}
+\begin{algorithmic}[1]
+\Function{BFS}{problem}  \textbf{returns} a solution, or failure
+	\State $\textit{node} \gets \text{a node with STATE } = problem.\text{INITIAL-STATE, PATH-COST } = 0$
+	
+	\If{$problem.\text{GOAL-TEST}(node.\text{STATE})$} 
+		\Return $\text{SOLUTION}(node)$
+	\EndIf
+	\BState
+
+	\State $\textit{frontier} \gets \text{a FIFO queue with node as the only element} $
+	\State $\textit{explored} \gets \text{an empty set} $
+	\BState
+
+	\Loop  $\textbf{ do}$
+		\If{$ frontier = \emptyset$} 
+			\Return $failure$
+		\EndIf
+		\BState
+		
+		\State $\textit{node} \gets \text{POP}(frontier)$
+		\State $ \text{add } node.\text{STATE to } explored $
+		\BState
+
+		\For{$\textbf{each } action \textbf{ in } problem.\text{ACTIONS}(node.\text{STATE}) $}
+			\State $ child \gets \text{CHILD-NODE}(problem, node, action)$
+			\BState
+				
+			\If{$ child.\text{STATE} \notin explored \text{ or } frontier $} 
+				\If{$ problem.\text{GOAL-TEST}(child.\text{STATE}) $} 
+					\Return $\text{SOLUTION}(child)$
+				\EndIf
+				\State $\textit{fontier} \gets frontier.\text{APPEND}(child)$
+			\EndIf
+		\EndFor
+
+	\EndLoop
+
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+\end{landscape}
+\end{document}

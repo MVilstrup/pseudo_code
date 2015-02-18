@@ -13,11 +13,11 @@
 \pagenumbering{gobble}
 \begin{landscape}
 \begin{algorithm}
-\caption{A* Search Algorithm (Graph)}\label{euclid}
+\caption{A* Search Algorithm (Graph)}
 \begin{algorithmic}[1]
 \Function{A*}{start, goal}
-	\State $\textit{closedset} \gets \textit{the empty set}$
-	\State $\textit{openset} \gets  {start} $	
+	\State $\textit{explored} \gets \textit{the empty set}$
+	\State $\textit{frontier} \gets  {start} $	
 	\State $\textit{came\_from} \gets \text{the empty map}$
 	\BState
 	
@@ -25,32 +25,32 @@
 	\State $\textit{f\_score}[start] \gets \textit{q\_score}[start] + \textit{heuristic\_cost\_estimate}(start, goal)$
 	\BState
 	
-	\While{$openset \neq \emptyset$} 
-		\State $\textit{current } \gets \text{the node in} \textit{ openset } \text{having the lowest } \textit{f\_score}[\text{ }] \text{value}$
+	\While{$frontier \neq \emptyset$} 
+		\State $\textit{current } \gets \text{the node in} \textit{ frontier } \text{having the lowest } \textit{f\_score}[\text{ }] \text{value}$
 		\BState
 
 		\If{current = goal} 
 		\Return $\text{reconstruct\_path}(came\_from, goal)$
 		\EndIf
 		\BState
-		\State $\text{remove} \textit{ current } \text{from} \textit{ openset}$
-		\State $\text{add} \textit{ current } \text{to} \textit{ closedset}$
+		\State $\text{remove} \textit{ current } \text{from} \textit{ frontier}$
+		\State $\text{add} \textit{ current } \text{to} \textit{ explored}$
 		\BState
 
 		\ForAll{$neighbour \in neighbour\_nodes(current)$}
-			\If{ $ neighbour \in closedset$}
-				\State $\bm{continue}$
+			\If{ $ neighbour \in explored$}
+				$\bm{continue}$
 			\EndIf
 			\BState
 			\State $\textit{neighbour\_g\_score} \gets \textit{g\_score}[current] + \text{dist\_between}(current, neighbour)$
 
-			\If{ $\textit{neighbour } \text{not in }  \textit{openset } \parallel \textit{neighbour\_g\_score} < \textit{g\_score}[neighbour]$}
+			\If{ $\textit{neighbour } \text{not in }  \textit{frontier } \parallel \textit{neighbour\_g\_score} < \textit{g\_score}[neighbour]$}
 				\State $\textit{came\_from}[neighbour] \gets \textit{current}$
 				\State $\textit{g\_score}[neighbour] \gets \textit{neighbour\_g\_score}$
 				\State $\textit{f\_score}[neighbour] \gets \textit{g\_score}[neighbour] + \text{ heuristic\_cost\_estimate}(neighbour, goal)$
 				\BState
-				\If{$ neighbour \notin openset $ }
-					\State $\text{add} \textit{ neighbour } \text{to} \textit{ openset}$
+				\If{$ neighbour \notin frontier $ }
+					$\text{add} \textit{ neighbour } \text{to} \textit{ frontier}$
 				\EndIf
 			\EndIf
 		\EndFor
