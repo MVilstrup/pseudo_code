@@ -1,0 +1,62 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{pdflscape}
+\usepackage[noend]{algpseudocode}
+\usepackage{bm}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{landscape}
+\begin{algorithm}
+\caption{Recursive Best First Search Algorithm}\label{euclid}
+\begin{algorithmic}[1]
+\Function{RECURSIVE-BEST-FIRST-SEARCH}{problem} \textbf{returns} a solution, or failure
+	\State \Return $\textbf{RBFS}(problem, \text{MAKE-NODE}(problem.\text{INITIAL-STATE}),\infty)$
+\EndFunction
+\BState
+\BState
+\BState
+
+\Function{RBFS}{problem, node, f\_limit} \textbf{returns} a solution, or failure and a new f-cost limit
+	\If{$problem.\text{GOAL-TEST}(node.\text{STATE})$} 
+		\Return $\text{SOLUTION}(node)$
+	\EndIf
+	\State $\textit{successors} \gets [\text{ }]$
+	\BState
+	
+	\For{$\textbf{each } action \textbf{ in } problem.\text{ACTIONS}(node.\text{STATE})$}
+		\State $\textit{successors}.\text{APPEND}(\text{CHILD-NODE}(problem, node, action)$
+	\EndFor
+
+	\If{$successors = \emptyset$} 
+		\Return $failure, \infty$
+	\EndIf
+	
+	\For{$\textbf{each } successor \textbf{ in } successors $}
+		\State $successor.f \gets \text{max}(successor.g + successor.h, node.f)$
+	\EndFor
+	\Loop  $\textbf{ do}$
+		\State $\textit{best} \gets \text{the lowest f-value node in successors} $
+		
+		\If{$ best.f > f\_limit $} 
+			\Return $failure, best.f$
+		\EndIf
+		\BState
+
+		\State $\textit{alternative} \gets \text{the second lowest f-value among successors} $
+		\State $\textit{result, best.f} \gets \textbf{RBFS}(problem, best, min(f\_limit, alternative)) $
+		\BState
+		\If{$ result \neq  failure$} 
+			\Return $result$
+		\EndIf
+	\EndLoop
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+\end{landscape}
+\end{document}
