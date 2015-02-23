@@ -1,0 +1,30 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{pdflscape}
+\usepackage{pbox}
+\usepackage{framed}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{landscape}
+
+\centerline{A \textbf{Boolean expression} is in \textit{Disjunctive Normal Form} (\textit{DNF}) if it only consists of conjunctions and negations of variables:}
+	$$ (t_1^1 \wedge t_2^1 \wedge \dots \wedge t_{k_1}^1) \vee \dots \vee (t_1^l \wedge t_2^l \wedge \dots \wedge t_{k_l}^l) $$ 
+
+\centerline{or}
+
+	$$ \bigvee_{j=1}^l \Bigg(\bigwedge_{i=1}^{k_j} t_i^j \Bigg) $$
+
+\centerline{A \textbf{Boolean expression} is in \textit{Conjunctive Normal Form} (\textit{CNF}) if it only consists of disjunctions and negations of variables:}
+	$$ (t_1^1 \vee t_2^1 \vee \dots \vee t_{k_1}^1) \wedge \dots \wedge (t_1^l \vee t_2^l \vee \dots \vee t_{k_l}^l) $$ 
+
+\centerline{or}
+
+	$$ \bigwedge_{j=1}^l \Bigg(\bigvee_{i=1}^{k_j} t_i^j \Bigg) $$
+
+\end{landscape}
+\end{document}

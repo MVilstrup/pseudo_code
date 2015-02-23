@@ -1,0 +1,23 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{pdflscape}
+\usepackage{pbox}
+\usepackage{framed}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{landscape}
+
+\centerline{\textbf{Boolean expressions} are generated from the following grammer:}
+$$ t ::= x | 0 | 1 | \neg t | t \wedge t | t \vee t | t \Rightarrow t | t \Leftrightarrow t $$
+\centerline{The priorities are, with the highest first:}
+$$\neg, \vee, \wedge, \Leftrightarrow, \Rightarrow$$
+\centerline{Hence, for example}
+$$\neg x_1 \wedge x_2 \vee x_3 = (((\neg x_1) \wedge x_2) \vee x_3 \Rightarrow x_4)$$
+
+\end{landscape}
+\end{document}
