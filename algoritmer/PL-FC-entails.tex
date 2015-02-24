@@ -1,0 +1,52 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{pdflscape}
+\usepackage[noend]{algpseudocode}
+\usepackage{bm}
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{landscape}
+\begin{algorithm}
+\caption{PL-FC Entails Algorithm}
+\begin{algorithmic}[1]
+\Function{PL-FC-ENTAILS}{KB, q} \textbf{returns } true \text{ or } false
+	
+	\State $\textbf{inputs: } KB, \text{the knowledge base, a set of propositional definite clauses } \textit{q}, \text{ the query, a proposition symbol}$
+	\BState
+	\State $\textit{count} \gets  \text{a table, where } \textit{count[c]} \text{ is the number of symbols in } \textit{c's} \text{ premise} $
+
+	\State $\textit{inferred} \gets \text{a table, where } inferred[s] \text{ is initially } false \text{ for all symbols}$
+
+	\State $\textit{agenda} \gets  \text{a queue of symbols, initially symbols known to be true in } KB $
+	\BState
+	
+	\While{$agenda \neq \emptyset$} 
+		\State $\textit{p } \gets \text{POP}(agenda)$
+		\If{p = q} 
+		\Return $true$
+		\EndIf
+		\BState
+
+		\If{inferred[p] = false} 
+			\State $inferred[p] \gets true$
+			\For{$\textbf{each } \text{clause } c \textbf{ in } KB \text{ where } p \in c.\text{PREMISE}$}
+				\State $ \text{decrement } count[c]$
+				\If{ $ count[c] = 0$}
+					$\text{add } c.\text{CONCLUSIONS to } agenda$
+				\EndIf
+			\EndFor
+		\EndIf
+	\EndWhile
+	\BState
+	\State \Return $false$
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+\end{landscape}
+\end{document}
